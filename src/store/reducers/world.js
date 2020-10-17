@@ -2,7 +2,7 @@ import {GET_WORLD_DATA} from "../actions/world"
 
 const initialState={
     loading:true,
-    todaysData:{}
+    dailyData:[]
 }
 
 export default function (state=initialState,action){
@@ -12,7 +12,7 @@ export default function (state=initialState,action){
         case GET_WORLD_DATA:
             return{
                 ...state,
-                todaysData:payload,
+                dailyData:payload,
                 loading:false
             }
         default:

@@ -1,23 +1,26 @@
-import React ,{useEffect}from 'react'
+import React ,{useEffect,Fragment}from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import {getWorldData} from "../store/actions/world"
+import E from "./SvgExample"
 
 
-function Dashboard({getWorldData,todaysData}) {
+function Dashboard({getWorldData,dailyData}) {
     useEffect(() => {
         getWorldData();
       }, [getWorldData]);
 
-    if(!todaysData.confirmed){
+
+    if(!dailyData){
         return(
             <h1>Loading...</h1>
         )
     }
     return (
-        <div>
-            <h1>{todaysData.confirmed.value}</h1>
-        </div>
+        <Fragment>
+            <E dailyData ={dailyData}/>
+        </Fragment>
+        
     )
 }
 
@@ -26,11 +29,11 @@ Dashboard.propTypes = {
 }
 
 function  mapStateToProps({world}){
-    const {todaysData} = world
+    const dailyData = world.dailyData
     
 
     return{
-        todaysData
+        dailyData
         
        
     }
